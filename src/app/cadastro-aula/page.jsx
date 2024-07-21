@@ -1,7 +1,7 @@
 // Import necessary components from Material-UI
 'use client'
 
-import { Box, Typography, TextField, Container, Link, Button } from "@mui/material";
+import { Box, Typography,Grid, FormGroup, FormControlLabel ,Checkbox, TextField, Container, Link, Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import "@fontsource/roboto/700.css";
 import * as React from 'react';
@@ -12,6 +12,13 @@ import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} fro
 
 
 export default function Cadastro_Aula() {
+  const [segunda,setsegunda] = React.useState(false)
+  const [terca,setterca] = React.useState(false)
+  const [quarta,setquarta] = React.useState(false)
+  const [quinta,setquinta] = React.useState(false)
+  const [sexta,setsexta] = React.useState(false)
+  const [sabado,setsabado] = React.useState(false)
+  const [domingo,setdomingo] = React.useState(false)
   const [horario, setHorario] = React.useState("") 
   const [nome, setNome] = React.useState("")
   const [pass2, setPass2] = React.useState("")
@@ -36,24 +43,41 @@ export default function Cadastro_Aula() {
       }}>
         
         <Box sx={{display:'flex',alignItems:'center', gap:'10px'}}>
-          <Typography variant="h4">Cadastro</Typography>
-          <Link href="/login" sx={{ color: 'primary' }}>
-            <Typography variant="body2">Login</Typography>
+          <Typography variant="h4">Aulas</Typography>
+          <Link href="/calendario" sx={{ color: 'primary' }}>
+            <Typography variant="body2">Caledário</Typography>
           </Link>
         </Box>
         <Box sx={{display:'flex',flexDirection:'column',gap: '20px'}}>
-          <TextField onChange={(event)=> setUser(event.target.value)} id="outlined-basic" label="Email" variant="outlined" />
-          <PasswordView onChange={(event)=> setPass(event.target.value)} id="outlined-basic"/>
-          <PasswordView onChange={(event)=> setPass2(event.target.value)} id="outlined-basic"/>
+          <TextField onChange={(event)=> setUser(event.target.value)} id="outlined-basic" label="Aula" variant="outlined" />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <FormGroup>
+                <FormControlLabel control={<Checkbox checked={segunda} onChange={() =>segunda?setsegunda(false):setsegunda(true)} />} label="Segunda"/>
+                <FormControlLabel control={<Checkbox checked={terca} onChange={() =>terca?setterca(false):setterca(true)} />} label="Terça" />
+                <FormControlLabel control={<Checkbox checked={quarta} onChange={() =>quarta?setquarta(false):setquarta(true)} />} label="Quarta" />
+                <FormControlLabel control={<Checkbox checked={quinta} onChange={() =>quinta?setquinta(false):setquinta(true)} />} label="Quinta" />
+                <FormControlLabel control={<Checkbox checked={sexta} onChange={() =>sexta?setsexta(false):setsexta(true)} />} label="Sexta" />
+                <FormControlLabel control={<Checkbox checked={sabado} onChange={() =>sabado?setsabado(false):setsabado(true)} />} label="Sábado" />
+                <FormControlLabel control={<Checkbox checked={domingo} onChange={() =>domingo?setdomingo(false):setdomingo(true)} />} label="Domingo" />
+              </FormGroup>        
+            </Grid>
+            <Grid item xs={6}>
+              <FormGroup>
+                <FormControlLabel control={<Checkbox checked={segunda} onChange={() =>segunda?setsegunda(false):setsegunda(true)} />} label="Segunda"/>
+                <FormControlLabel control={<Checkbox checked={terca} onChange={() =>terca?setterca(false):setterca(true)} />} label="Terça" />
+                <FormControlLabel control={<Checkbox checked={quarta} onChange={() =>quarta?setquarta(false):setquarta(true)} />} label="Quarta" />
+                <FormControlLabel control={<Checkbox checked={quinta} onChange={() =>quinta?setquinta(false):setquinta(true)} />} label="Quinta" />
+                <FormControlLabel control={<Checkbox checked={sexta} onChange={() =>sexta?setsexta(false):setsexta(true)} />} label="Sexta" />
+                <FormControlLabel control={<Checkbox checked={sabado} onChange={() =>sabado?setsabado(false):setsabado(true)} />} label="Sábado" />
+                <FormControlLabel control={<Checkbox checked={domingo} onChange={() =>domingo?setdomingo(false):setdomingo(true)} />} label="Domingo" />
+              </FormGroup>        
+            </Grid>
+          </Grid>
         </Box>
         <Box>
           <Link href="/calendario">
             <Button onClick={() => Cadastro()} variant='contained' sx={{ borderRadius: 100, width: 343, backgroundColor: 'primary' }}>Cadastrar</Button> 
-          </Link>
-        </Box>
-        <Box>
-          <Link href="/recuperar-senha" sx={{ color: 'primary' }}>
-            <Typography variant="body2">Esqueceu a senha?</Typography>
           </Link>
         </Box>
       </Container>
